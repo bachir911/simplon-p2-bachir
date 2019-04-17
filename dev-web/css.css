@@ -1,0 +1,24 @@
+
+#general{
+    width: 900px;
+    height: 700px;
+    background-color: rgb(200, 226, 226);
+    margin: auto;
+}
+#baniere{
+    width: 900px;
+    height: 70px;
+    background-color: brown;
+}
+#bloc1{
+    width: 500px;
+    height: 630px;
+    background-color: yellow;
+    float: left;
+}
+#bloc2{
+    width: 400px;
+    height: 630px;
+    background-color:gray;
+    float: right;
+}
