@@ -64,16 +64,17 @@ mysql> select cohorte.nombre_apprenant, fabrique.nom from cohorte left join fabr
 
 	5-afficher la liste des referentiles par fabrique
 
-	SELECT referentiel.nombre_ref, fabrique.nom FROM referentiel LEFT JOIN fabrique ON fabrique.id = referentiel.id;
+	SELECT referentiel.nom_ref, fabrique.nom FROM referentiel LEFT JOIN fabrique ON fabrique.id = referentiel.id;
 
-mysql> select referentiel.nombre_ref, fabrique.nom from referentiel left join fabrique on fabrique.id = referentiel.id;
-+------------+-----------------+
-| nombre_ref | nom             |
-+------------+-----------------+
-|          1 | Simplon_AUF     |
-|          2 | Sonatel_Academy |
-+------------+-----------------+
+mysql> select referentiel.nom_ref, fabrique.nom from referentiel left join fabrique on fabrique.id = referentiel.id;
++------------------+-----------------+
+| nom_ref          | nom             |
++------------------+-----------------+
+| referent digital | Simplon_AUF     |
+| developpeur      | Sonatel_Academy |
++------------------+-----------------+
 2 rows in set (0.00 sec)
+
 
 	6-afficher la liste des apprenants qui ont au moins un contrat
 
