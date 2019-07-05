@@ -1,0 +1,144 @@
+
+		EXERCICE SQL
+
+
+	1-afficher la liste des pays ou simplon est présent
+
+	SELECT * FROM name_table;
+	 
+	SELECT pays.nom, fabrique.nom FROM pays LEFT JOIN fabrique on pays.id = fabrique.id_pays;
+
+mysql> select * from pays;
++----+---------+
+| id | nom     |
++----+---------+
+|  1 | Senegal |
+|  2 | Mali    |
+|  3 | Maroc   |
+|  4 | Maroc   |
++----+---------+
+4 rows in set (0.00 sec)
+
+	
+	2-afficher la liste des fabriques de la ville de Dakar( ou une ville donnée)
+
+	-SELECT NAME FROM name_table WHERE column = value;
+
+mysql> select nom from fabrique where ville = 'Dakar';
++-----------------+
+| nom             |
++-----------------+
+| Simplon_AUF     |
+| Sonatel_Academy |
++-----------------+
+2 rows in set (0.00 sec)
+
+
+	3-afficher la liste des pays qui on moins deux(2) fabriques
+
+	SELECT table_name.nom FROM table_name LEFT JOIN table_name ON table_name.id_table_name>=2;
+
+mysql> select pays.nom from pays left join fabrique on fabrique.id_pays>=2;
++---------+
+| nom     |
++---------+
+| Senegal |
+| Mali    |
+| Maroc   |
+| Maroc   |
++---------+
+4 rows in set (0.00 sec)
+
+	4-afficher le nombre d'apprenant par fabrique
+
+	SELECT cohorte.nombre_apprenant, fabrique.nom FROM cohorte LEFT JOIN fabrique ON cohorte.id = fabrique.id;
+mysql> select cohorte.nombre_apprenant, fabrique.nom from cohorte left join fabrique on cohorte.id = fabrique.id;
++------------------+-----------------+
+| nombre_apprenant | nom             |
++------------------+-----------------+
+|               26 | Simplon_AUF     |
+|               26 | Sonatel_Academy |
++------------------+-----------------+
+2 rows in set (0.01 sec)
+
+
+	5-afficher la liste des referentiles par fabrique
+
+	SELECT referentiel.nombre_ref, fabrique.nom FROM referentiel LEFT JOIN fabrique ON fabrique.id = referentiel.id;
+
+mysql> select referentiel.nombre_ref, fabrique.nom from referentiel left join fabrique on fabrique.id = referentiel.id;
++------------+-----------------+
+| nombre_ref | nom             |
++------------+-----------------+
+|          1 | Simplon_AUF     |
+|          2 | Sonatel_Academy |
++------------+-----------------+
+2 rows in set (0.00 sec)
+
+	6-afficher la liste des apprenants qui ont au moins un contrat
+
+	SELECT nom, prenom FROM apprenant LEFT JOIN contrat  ON apprenant.id = contrat.id;
+
+mysql> select nom, prenom from apprenant left join contrat  on apprenant.id = contrat.id;
++--------+--------+
+| nom    | prenom |
++--------+--------+
+| Ndiaye | Bachir |
+| Sarr   | Oumy   |
++--------+--------+
+2 rows in set (0.01 sec)
+
+	7-Ecrire l'ordre sql qui permet d'ajouter un champ "ouverte" à la table cohorte de type boolean
+
+	ALTER TABLE nom_table ADD name column BOOLEAN;
+
+mysql> ALTER TABLE cohorte ADD Ouverte BOOLEAN;
+Query OK, 0 rows affected (0.80 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc cohorte;
++------------------+------------+------+-----+---------+----------------+
+| Field            | Type       | Null | Key | Default | Extra          |
++------------------+------------+------+-----+---------+----------------+
+| id               | int(11)    | NO   | PRI | NULL    | auto_increment |
+| date_debut       | date       | NO   |     | NULL    |                |
+| date_fin         | date       | NO   |     | NULL    |                |
+| nombre_apprenant | int(11)    | NO   |     | NULL    |                |mysql> select referentiel.nombre_ref, fabrique.nom from referentiel left join fabrique on fabrique.id = referentiel.id;
++------------+-----------------+
+| nombre_ref | nom             |
++------------+-----------------+
+|          1 | Simplon_AUF     |
+|          2 | Sonatel_Academy |
++------------+-----------------+
+2 rows in set (0.00 sec)
+| Ouverte          | tinyint(1) | YES  |     | NULL    |                |
++------------------+------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+	8-Modifier le type du champ sexe au lieu de boolean on utilise char(1)
+
+	ALTER TABLE nom_table MODIFY name column CHAR(1);
+
+mysql> ALTER TABLE apprenant MODIFY sexe CHAR(1);
+Query OK, 2 rows affected (1.31 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc apprenant;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| id             | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nom            | varchar(45) | NO   |     | NULL    |                |
+| prenom         | varchar(45) | NO   |     | NULL    |                |
+| statut         | varchar(45) | NO   |     | NULL    |                |
+| date_naissance | date        | NO   |     | NULL    |                |
+| sexe           | char(1)     | YES  |     | NULL    |                |
+| email          | varchar(45) | NO   |     | NULL    |                |
+| tel            | int(11)     | NO   |     | NULL    |                |
+| id_referentiel | int(11)     | NO   | MUL | NULL    |                |
+| id_cohorte     | int(11)     | NO   | MUL | NULL    |                |
+| id_fabrique    | int(11)     | NO   | MUL | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+11 rows in set (0.01 sec)
+
